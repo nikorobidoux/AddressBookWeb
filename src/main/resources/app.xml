@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="mainFrame" class="jpa.BuddyFrame" init-method="init">
+        <property name="book">
+            <ref bean="book"></ref>
+        </property>
+        <property name="createBuddy">
+            <ref bean="createButton"></ref>
+        </property>
+        <property name="displayBuddies">
+            <ref bean="displayBuddies"></ref>
+        </property>
+    </bean>
+
+    <bean id="createButton" class="jpa.CreateBuddyButton" init-method="init">
+        <property name="listener">
+            <ref bean="listener"></ref>
+        </property>
+    </bean>
+
+    <bean id="displayBuddies" class="jpa.DisplayBuddiesTextArea">
+
+    </bean>
+
+    <bean id="listener" class="jpa.CreateBuddyActionListener">
+        <property name="book">
+            <ref bean="book"></ref>
+        </property>
+    </bean>
+
+    <bean id="book" class="jpa.AddressBook">
+
+    </bean>
+
+</beans>
