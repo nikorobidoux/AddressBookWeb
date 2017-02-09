@@ -1,3 +1,9 @@
 language: java
 jdk:
  - oraclejdk8
+
+ mvn -version
+ Apache Maven 3.2.5 (12a6b3acb947671f09b81f49094c53f426d8cea1; 2014-12-14T17:29:23+00:00)
+ Maven home: /usr/local/maven
+ Java version: 1.7.0_76, vendor: Oracle Corporation
+ Java home: /usr/lib/jvm/java-7-oracle/jre
