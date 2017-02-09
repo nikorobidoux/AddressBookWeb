@@ -1,3 +1,5 @@
+package jpa;
+
 import jpa.AddressBook;
 import jpa.BuddyInfo;
 import org.junit.Test;
