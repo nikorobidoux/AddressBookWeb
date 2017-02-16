@@ -2,14 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Handling Form Submission</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
     <h1>Form</h1>
-    <form action="#" th:action="@{/addBuddy}">
-        <p>Name: <input type="text" th:name="name" th:value="*{name}" /></p>
-        <p>Phone Number: <input type="text" th:name="pnum" th:value="*{pnum}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <form action="">
+        <p>Name: <input type="text"/></p>
+        <p>Phone Number: <input type="text"/></p>
+        <button id="submit" type="button">button</button>
     </form>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://localhost:8080/createAddressBook"
+            }).then(function(data) {
+                $('.addressBook-id').append(adddressBook.id);
+            });
+        });
+        $("#submit").click(function () {
+            $.ajax({
+                url: "http://localhost:8080/display"
+            }).then(function(data) {
+                alert("Hello! I am an alert box!!");
+            });
+        });
+    </script>
+    <noscript>
+        <form action="#" th:action="@{/addBuddy}">
+                <p>Name: <input type="text" th:name="name" th:value="*{name}" /></p>
+                <p>Phone Number: <input type="text" th:name="pnum" th:value="*{pnum}" /></p>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </noscript>
 </body>
 </html>
