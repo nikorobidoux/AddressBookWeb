@@ -5,25 +5,56 @@ import jpa.AddressBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 @Controller
 public class AddressBookController {
 
     private AddressBookRepository repo;
+    private boolean init = false;
 
     @Autowired
     public void repoInit(AddressBookRepository r){
         repo = r;
     }
-
+    /*
     @RequestMapping("/createAddressBook")
-    public String createAddressBook(Model model) {//TODO make the parameter an addressbook?
+    public String createAddressBook(Model model) {
         //model.addAttribute("addressBook", addressBook);
         AddressBook addressBook = new AddressBook();
         model.addAttribute("addressBook", addressBook);
         repo.save(addressBook);
         return "addaddressbook";
+    }
+    */
+
+    @RequestMapping("/display")
+    public String displayAddressBook(Model model){
+        AddressBook a = repo.findAll().iterator().next();
+        model.addAttribute("addressBook",a);
+        return "addNewBuddy";
+    }
+
+    /*
+    @PostMapping("/display")
+    public String newBuddySubmit(@ModelAttribute AddressBook addressBook){
+        AddressBook a = repo.findAll().iterator().next();
+        a.addBuddy(new BuddyInfo("joeski", "123454"));
+        repo.save(a);
+        return "showAllBuddies";
+    }
+    */
+
+    @GetMapping("/createAddressBook")
+    public String createAddressBook(Model model) {
+
+        AddressBook addressBook = new AddressBook();
+        model.addAttribute("addressBook", addressBook);
+        repo.save(addressBook);
+        init = true;
+
+
+        return "addNewBuddy";
     }
 
     @RequestMapping("/addBuddy")
@@ -33,7 +64,7 @@ public class AddressBookController {
         a.addBuddy(b);
         model.addAttribute("addressBook",a);
         repo.save(a);
-        return "addaddressbook";
+        return "showAllBuddies";
     }
 
 
